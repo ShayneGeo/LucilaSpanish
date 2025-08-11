@@ -4,20 +4,20 @@ import openai
 from openai import OpenAI
 import os
 
-# # ----- AUTH -----
-# if "authenticated" not in st.session_state:
-#     st.session_state.authenticated = False
+# ----- AUTH -----
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
 
-# if not st.session_state.authenticated:
-#     st.title("🔐 Acceso restringido")
-#     password = st.text_input("Introduce la contraseña:", type="password")
-#     if password == st.secrets["auth"]["password"]:
-#         st.session_state.authenticated = True
-#         st.success("✅ Acceso concedido")
-#         st.rerun()
-#     elif password:
-#         st.error("❌ Contraseña incorrecta")
-#     st.stop()
+if not st.session_state.authenticated:
+    st.title("🔐 Acceso restringido")
+    password = st.text_input("Introduce la contraseña:", type="password")
+    if password == st.secrets["auth"]["password"]:
+        st.session_state.authenticated = True
+        st.success("✅ Acceso concedido")
+        st.rerun()
+    elif password:
+        st.error("❌ Contraseña incorrecta")
+    st.stop()
 
 
 
