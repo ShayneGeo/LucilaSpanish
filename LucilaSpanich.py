@@ -99,7 +99,7 @@ if not st.session_state.api_key:
     key_input = st.text_input("🔑 Introduce tu clave de API de OpenAI", type="password")
     if key_input:
         st.session_state.api_key = key_input
-        st.experimental_rerun()
+        st.rerun()
 
 if not st.session_state.api_key:
     st.warning("Se necesita la clave API para continuar.")
