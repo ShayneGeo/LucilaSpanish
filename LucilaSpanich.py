@@ -1,14 +1,30 @@
-# Requires: pip install streamlit openai
-import streamlit as st
-import openai
-from openai import OpenAI
-import os
+# # Requires: pip install streamlit openai
+# import streamlit as st
+# import openai
+# from openai import OpenAI
+# import os
+
+# # # ----- AUTH -----
+# # if "authenticated" not in st.session_state:
+# #     st.session_state.authenticated = False
+
+# # if not st.session_state.authenticated:
+# #     st.title("🔐 Acceso restringido")
+# #     password = st.text_input("Introduce la contraseña:", type="password")
+# #     if password == st.secrets["auth"]["password"]:
+# #         st.session_state.authenticated = True
+# #         st.success("✅ Acceso concedido")
+# #         st.rerun()
+# #     elif password:
+# #         st.error("❌ Contraseña incorrecta")
+# #     st.stop()
 
 # # ----- AUTH -----
 # if "authenticated" not in st.session_state:
 #     st.session_state.authenticated = False
 
 # if not st.session_state.authenticated:
+#     st.set_page_config(page_title="🔐 Acceso restringido")
 #     st.title("🔐 Acceso restringido")
 #     password = st.text_input("Introduce la contraseña:", type="password")
 #     if password == st.secrets["auth"]["password"]:
@@ -17,14 +33,22 @@ import os
 #         st.rerun()
 #     elif password:
 #         st.error("❌ Contraseña incorrecta")
-#     st.stop()
+#     st.stop()  # Ensures no other app content is shown
+
+# Requires: pip install streamlit openai
+import streamlit as st
+import openai
+from openai import OpenAI
+import os
+
+# ----- PAGE CONFIG (only once, at the top!) -----
+st.set_page_config(page_title="🗣️ Chatbot en Español con Corrección", page_icon="🗣️")
 
 # ----- AUTH -----
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 
 if not st.session_state.authenticated:
-    st.set_page_config(page_title="🔐 Acceso restringido")
     st.title("🔐 Acceso restringido")
     password = st.text_input("Introduce la contraseña:", type="password")
     if password == st.secrets["auth"]["password"]:
@@ -33,8 +57,7 @@ if not st.session_state.authenticated:
         st.rerun()
     elif password:
         st.error("❌ Contraseña incorrecta")
-    st.stop()  # Ensures no other app content is shown
-
+    st.stop()
 
 
 
