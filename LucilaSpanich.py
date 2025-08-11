@@ -82,14 +82,32 @@ if "rounds" not in st.session_state:
 st.set_page_config(page_title="Asistente en Español", page_icon="🗣️")
 st.title("🗣️ Chatbot en Español con Corrección")
 
-api_key = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
-if not api_key:
-    api_key = st.text_input("🔑 Introduce tu clave de API de OpenAI", type="password")
-if not api_key:
+# api_key = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
+# if not api_key:
+#     api_key = st.text_input("🔑 Introduce tu clave de API de OpenAI", type="password")
+# if not api_key:
+#     st.warning("Se necesita la clave API para continuar.")
+#     st.stop()
+
+# client = OpenAI(api_key=api_key)
+
+# ----- API KEY SETUP -----
+if "api_key" not in st.session_state:
+    st.session_state.api_key = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
+
+if not st.session_state.api_key:
+    key_input = st.text_input("🔑 Introduce tu clave de API de OpenAI", type="password")
+    if key_input:
+        st.session_state.api_key = key_input
+        st.experimental_rerun()
+
+if not st.session_state.api_key:
     st.warning("Se necesita la clave API para continuar.")
     st.stop()
 
-client = OpenAI(api_key=api_key)
+client = OpenAI(api_key=st.session_state.api_key)
+
+
 
 # ----- CHAT DISPLAY -----
 for msg in st.session_state.messages[1:]:
